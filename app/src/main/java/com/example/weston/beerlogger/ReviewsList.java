@@ -1,6 +1,7 @@
 package com.example.weston.beerlogger;
 
 import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -15,7 +16,9 @@ import java.util.List;
 
 
 public class ReviewsList extends ListActivity {
+    public final static String REVIEW_ID = "com.example.weston.beerlogger.REVIEW_ID";
     private ReviewsDataSource dataSource;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,10 +50,21 @@ public class ReviewsList extends ListActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
     @Override
     protected void onListItemClick(ListView listView, View view, int position, long id){
         Review selection = (Review) listView.getItemAtPosition(position);
-        Toast.makeText(this, selection.getName() +": "+selection.getId(),Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this,ReviewActivity.class);
+        intent.putExtra(REVIEW_ID,selection.getId());
+        startActivity(intent);
+    }
+    @Override
+    protected void onResume(){
+        dataSource.open();
+        super.onResume();
+    }
+    @Override
+    protected void onPause(){
+        dataSource.close();
+        super.onPause();
     }
 }

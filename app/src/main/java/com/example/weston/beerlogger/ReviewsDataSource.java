@@ -51,6 +51,7 @@ public class ReviewsDataSource {
     public Review getReview(long id){
         Cursor cursor = database.query(MySQLiteHelper.TABLE_REVIEWS,allColumns,
                 MySQLiteHelper.COL_REVIEWS_ID + " = " + id,null,null,null,null);
+        cursor.moveToFirst();
         return cursorToReview(cursor);
 
     }

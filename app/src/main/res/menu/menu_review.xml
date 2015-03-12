@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.weston.beerlogger.ReviewActivity">
+    <item android:id="@+id/action_settings"
+        android:title="@string/action_edit"
+        android:icon="@mipmap/ic_action_edit"
+        android:orderInCategory="100"
+        android:onClick="editMode"
+        app:showAsAction="always" />
+</menu>
